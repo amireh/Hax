@@ -1,0 +1,16 @@
+$#include "Hax/LuaExporter.hpp"
+
+namespace Hax {
+class LuaExporter {
+  TOLUA_TEMPLATE_BIND(T, std::list<Hax::Entity*>, std::vector<Hax::Entity*>)
+
+  LuaExporter();
+  virtual ~LuaExporter();
+
+  void __export @ export(T const& container, const char* data_type, const char* out_table);
+};
+
+//$renaming LuaExporter<Hax::EntityVect> @ EntityVectExporter
+//$renaming LuaExporter<Hax::EntityList> @ EntityListExporter
+
+}

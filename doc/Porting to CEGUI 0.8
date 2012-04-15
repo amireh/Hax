@@ -1,0 +1,12 @@
+Porting to CEGUI 0.8:
+  
+  1. Renamed headers
+  2. Typedef-ed CEGUI::Point to CEGUI::Vector2<float>
+  3. CEGUI::Size, CEGUI::Rect to Size<float>, Rect<float>
+  4. Renamed Image::draw() to Image::render()
+  5. CEGUI::Imageset::setDefaultResourceGroup("imagesets") -> CEGUI::ImageManager::setImagesetDefaultResourceGroup("imagesets");
+  6. Added to CEGUI.pkg:
+    * class ImageManager { public: static ImageManager& getSingleton(); }
+
+  7. Lua changes:
+    * CESchemeMgr:create to CESchemeMgr:createFromFile

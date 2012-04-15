@@ -1,0 +1,15 @@
+$#include "Hax/ScriptEngine.hpp"
+$#include <lua.h>
+
+namespace Hax {
+  
+class ScriptEngine : public Hax::Engine, public Hax::EventListener {
+  static ScriptEngine* getSingletonPtr();
+  
+  string_t getScriptPathPrefix() const;
+  string_t getModulePathPrefix() const;
+
+  void callMeAfter(int inSeconds, string_t inFunc);
+  void _reportAccepted @ reportAccepted();
+};
+}

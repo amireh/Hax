@@ -1,0 +1,29 @@
+$#include "Hax/Log.hpp"
+$#include "Hax/Logger.hpp"
+
+namespace Hax
+{
+  /*!
+   * @brief
+   * Logger objects respond to the operator<< for logging to an std::ostream.
+   */
+  class Logger
+  {
+
+  public:
+    /**
+     * @param context
+     *  A prefix prepended to every message logged by this system. This should
+     *  normally denote the name of the logging module.
+     */
+    Logger(const char* context = "Unnamed");
+    Logger(const Logger& src);
+    virtual ~Logger();
+    log_t* getLog();
+
+    protected:
+    log_t* mLog;
+
+  }; // end of Logger class
+} // end of Hax namespace
+#endif

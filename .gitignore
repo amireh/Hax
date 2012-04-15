@@ -1,0 +1,10 @@
+bin
+build
+log
+exclude
+dumps
+.DS_Store
+._*
+lib
+resources/media
+resources/ui

@@ -1,0 +1,66 @@
+$#include "Hax/Event.hpp"
+
+namespace Hax {
+
+namespace EventUID {
+  enum {
+    Unassigned = 0,
+    EntitySelected,
+    EntityDeselected,
+    SanityCheck
+  };
+}
+
+namespace EventFeedback {
+  enum {
+    Unassigned = 0,
+    Ok,
+    Error,
+    InvalidRequest,
+    SanityCheck
+  };
+}
+
+struct Event {
+
+  typedef	std::map< string_t, string_t > property_t;
+
+  enum {
+    // if Length is small enough it will be cast to 1 byte thus we can't
+    // depend on uint16_t being interpreted as 2 bytes long.. so we -1
+    HeaderLength = 7, // "UIDOptionsFeedbackLength"
+    FooterLength = 4 // "\r\n\r\n"
+  };
+
+  // event options
+  enum {
+    NoFormat    = 0x01, // events with no format will not be parsed per-property
+    Compressed  = 0x02, // whether the content is compressed
+    IsLocal     = 0x04, // local events will not be dispatched over the network
+    Broadcast   = 0x08
+  };
+
+  Event();
+  Event(const unsigned char inUID, const unsigned char = EventFeedback::Unassigned, unsigned char options=0);
+
+  //! resets evt state
+  ~Event();
+
+  string_t getProperty(string_t inName) const;
+  void setProperty(const string_t inName, const string_t inValue);
+  bool hasProperty(const string_t inName) const;
+
+  /// debug
+  void dump(std::ostream& inStream = std::cout) const;
+
+  unsigned char		    UID;
+  unsigned char       Options;
+  unsigned char	      Feedback;
+  property_t		      Properties;
+  static const char   *Footer;
+  void                *Any;
+
+  static string_t __uidToString @ UIDToString(unsigned char);
+};
+
+}

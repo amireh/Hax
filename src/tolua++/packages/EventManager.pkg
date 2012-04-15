@@ -1,0 +1,11 @@
+$#include "Hax/EventManager.hpp"
+
+namespace Hax {
+
+class EventManager
+{
+  static EventManager* getSingletonPtr();
+  void hook(const Event& inEvt);
+};
+
+}

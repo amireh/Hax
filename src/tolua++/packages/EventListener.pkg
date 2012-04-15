@@ -1,0 +1,14 @@
+$#include "Hax/EventListener.hpp"
+
+namespace Hax {
+class EventListener
+{
+
+	EventListener();
+	~EventListener();
+
+	void enqueue(Event& inEvt);
+
+};
+
+}

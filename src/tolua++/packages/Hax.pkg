@@ -1,0 +1,13 @@
+// include the header that makes these files generate valid code
+$#include "Hax/Hax.hpp"
+
+$typedef std::string string_t;
+typedef std::string string_t;
+
+// Hax
+$pfile "Event.pkg"
+$pfile "EventListener.pkg"
+$pfile "EventManager.pkg"
+$pfile "Identifiable.pkg"
+$pfile "Logger.pkg"
+$pfile "LuaExporter.pkg"
